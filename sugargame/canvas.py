@@ -1,7 +1,6 @@
 import os
 from gi.repository import Gtk
 from gi.repository import GObject
-from gi.repository import GLib
 from sugar3.activity.activity import PREVIEW_SIZE
 import pygame
 import event
