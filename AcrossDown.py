@@ -74,7 +74,7 @@ class AcrossDown:
         if key in g.CIRCLE: g.help_on=not g.help_on; return
 
     def buttons_setup(self):
-        cy=g.sy(19.8)
+        cy=g.sy(18.8)
         buttons.Button('new',(g.sx(30),cy),caption='new game')
         buttons.Button('replay',(g.sx(2),cy),caption='replay')
         cx=g.sx(26)
