@@ -72,7 +72,6 @@ class PeterActivity(activity.Activity):
         self.game.save_pattern()
         self.game.g_init()
         self._speed_range.set_value(800)
-        self.game.run(restore=True)
 
     def read_file(self, file_path):
         try:
