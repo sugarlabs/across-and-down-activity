@@ -109,13 +109,16 @@ class AcrossDown:
         while going:
             if self.journal:
                 # Pump Gtk messages.
-                while Gtk.events_pending(): Gtk.main_iteration()
-
+                while Gtk.events_pending():
+                    Gtk.main_iteration()
+                if not going:
+                    break
             # Pump PyGame messages.
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
-                    if not self.journal: utils.save()
-                    going=False
+                    if not self.journal:
+                        utils.save()
+                    return
                 elif event.type == pygame.MOUSEMOTION:
                     g.pos=event.pos
                     g.redraw=True
