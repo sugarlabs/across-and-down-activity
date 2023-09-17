@@ -25,6 +25,15 @@ class PeterActivity(activity.Activity):
     def __init__(self, handle):
         super(PeterActivity, self).__init__(handle)
 
+        # Create the game instance.
+        self.game = AcrossDown.AcrossDown(self)
+        self.game.canvas = sugargame.canvas.PygameCanvas(self, main=self.game.run,
+                                                         modules=[pygame.display,
+                                                                  pygame.font,
+                                                                  pygame.mixer])
+        self.set_canvas(self.game.canvas)
+        self.game.canvas.grab_focus()
+
         # Build the activity toolbar.
         toolbar_box = ToolbarBox()
         self.set_toolbar_box(toolbar_box)
@@ -44,16 +53,6 @@ class PeterActivity(activity.Activity):
         toolbar_box.toolbar.insert(stop_button, -1)
         stop_button.show()
         self.show_all()
-
-        # Create the game instance.
-        self.game = AcrossDown.AcrossDown(self)
-
-        # Build the Pygame canvas.
-        self.game.canvas = sugargame.canvas.PygameCanvas(self, \
-            main=self.game.run, modules=[pygame.display, pygame.font])
-        
-        self.set_canvas(self.game.canvas)
-        self.game.canvas.grab_focus()
 
         Gdk.Screen.get_default().connect('size-changed',
                                               self.__configure_cb)
