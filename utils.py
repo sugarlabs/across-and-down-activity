@@ -1,5 +1,6 @@
 # utils.py
 import g,pygame,sys,os,random,copy,load_save
+import math
 
 #constants
 RED,BLUE,GREEN,BLACK,WHITE=(255,0,0),(0,0,255),(0,255,0),(0,0,0),(255,255,255)
@@ -243,5 +244,13 @@ def avg(c1,c2):
 def ch_set(s,ind,ch): # eg ch_set('abc',1,'x')->'axc'
     return s[:ind]+ch+s[(ind+1):]
 
-       
-    
+def generate_ellipse_points(center_x, center_y, a, b, num_points=26):
+    points = []
+
+    for i in range(num_points):
+        angle = (2 * math.pi * i) / num_points - math.pi / 2  # Start from the top
+        x = center_x + a * math.cos(angle)
+        y = center_y + b * math.sin(angle)
+        points.append([int(x), int(y)])
+
+    return points

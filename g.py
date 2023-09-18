@@ -59,7 +59,20 @@ def init(): # called by run()
     global help_img,help_on,help_cxy
     global count,count_c,complete
     best=0
-    bgd=utils.load_image('bgd.png',False); x0=sx(0)
+    
+    bgd = pygame.Surface((w, h))
+    x0 = sx(0)
+    pygame.draw.rect(bgd, utils.CREAM, pygame.Rect((0, 0), (w, h)))
+    coords = utils.generate_ellipse_points(w // 2, h * 0.46, w * 0.35, h * 0.40)
+
+    for i, c in enumerate(coords):
+        alph = font2.render((chr(ord('a') + i)).capitalize(), True, (0, 0, 0))
+        a_rect = alph.get_rect()
+        alph = pygame.transform.scale(alph, (int(a_rect.w * 1.6), int(a_rect.h * 1.6)))
+        c[0] -= alph.get_rect().w // 2 + x0
+        c[1] -= alph.get_rect().h // 2 + 0
+        bgd.blit(alph, c)
+
     message_c=(sx(16),sy(2))
     scores=utils.load_image('scores.png',False)
     scores_c=(sx(5.7),sy(11))
