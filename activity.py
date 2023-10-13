@@ -12,6 +12,7 @@ from gi.repository import GObject
 
 import pygame
 from sugar3.activity import activity
+from sugar3.graphics import style
 from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
@@ -67,12 +68,8 @@ class PeterActivity(activity.Activity):
     def __configure_cb(self, event):
         ''' Screen size has changed '''
         pygame.display.set_mode((Gdk.Screen.width(),
-                                 Gdk.Screen.height() - GRID_CELL_SIZE),
+                                 Gdk.Screen.height() - style.GRID_CELL_SIZE),
                                 pygame.RESIZABLE)
-        self.game.save_pattern()
-        self.game.g_init()
-        self._speed_range.set_value(800)
-        self.game.run(restore=True)
 
     def read_file(self, file_path):
         try:
